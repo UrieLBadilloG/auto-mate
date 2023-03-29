@@ -129,5 +129,7 @@
             }
         }
     },
-    "defaultProject": "freya-ng"
+    "cli": {
+      "analytics": false
+    }
 }

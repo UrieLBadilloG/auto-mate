@@ -20,7 +20,6 @@ import {ChartModule} from 'primeng/chart';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ChipsModule} from 'primeng/chips';
 import {ChipModule} from 'primeng/chip';
-import {CodeHighlighterModule} from 'primeng/codehighlighter';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {ColorPickerModule} from 'primeng/colorpicker';
@@ -137,16 +136,6 @@ import {ProductService} from './demo/service/productservice';
 import {MenuService} from './app.menu.service';
 import {ConfigService} from './demo/service/app.config.service';
 
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-
-FullCalendarModule.registerPlugins([
-    dayGridPlugin,
-    timeGridPlugin,
-    interactionPlugin
-]);
-
 @NgModule({
     imports: [
         BrowserModule,
@@ -168,7 +157,6 @@ FullCalendarModule.registerPlugins([
         CheckboxModule,
         ChipsModule,
         ChipModule,
-        CodeHighlighterModule,
         ConfirmDialogModule,
         ConfirmPopupModule,
         ColorPickerModule,
