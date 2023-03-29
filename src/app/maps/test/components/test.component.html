@@ -1,0 +1,10 @@
+<div class="grid">
+    <div class="col-12">
+        <div *ngIf="apiLoaded | async">
+            <google-map [options]="options">
+                <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"
+                    [options]="markerOptions"></map-marker>
+            </google-map>
+        </div>
+    </div>
+</div>

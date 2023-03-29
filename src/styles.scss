@@ -7,3 +7,10 @@ $gutter: 1rem; //for primeflex grid system
 @import "../node_modules/prismjs/themes/prism-coy.css";
 @import "assets/demo/flags/flags.css";
 @import "assets/demo/documentation.scss";
+@import "assets/fontawesome/all.min.css";
+
+
+.map-container {
+    width: 100% !important;
+    height: 80vh !important;
+}
