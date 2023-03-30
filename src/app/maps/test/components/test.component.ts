@@ -20,6 +20,8 @@ export class TestComponent implements OnInit {
     markerOptions: google.maps.MarkerOptions = { draggable: false };
     markerPositions: google.maps.LatLngLiteral[] = [];
 
+    location: any = { lat: 48.8584, lng: 2.2945 };
+
     constructor(httpClient: HttpClient) {
         this.apiLoaded = httpClient.jsonp(`https://maps.googleapis.com/maps/api/js?key=${this.apiKey}`, 'callback')
             .pipe(
@@ -31,10 +33,16 @@ export class TestComponent implements OnInit {
     ngOnInit(): void {
         this.getCurrentLocation().then((position: any) => {
             console.log('position', position);
-            this.options.center = { lat: position.coords.latitude, lng: position.coords.longitude };
-            this.options.zoom = 17;
+            this.location = { lat: position.coords.latitude, lng: position.coords.longitude };
+            /* this.options.center = { ...this.location };
+            this.options.zoom = 17; */
 
-            this.markerPositions.push({ lat: position.coords.latitude, lng: position.coords.longitude });
+            this.options = {
+                center: { ...this.location },
+                zoom: 17
+            }
+
+            this.markerPositions.push({ ...this.location });
         });
 
 
