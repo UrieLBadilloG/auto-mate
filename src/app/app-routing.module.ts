@@ -66,6 +66,7 @@ import { BlocksComponent } from './blocks/blocks/blocks.component';
 
                     // Mapas
                     { path: 'maps/test', loadChildren: () => import('./maps/test/test.module').then(m => m.TestModule) },
+                    { path: 'maps/generate', loadChildren: () => import('./maps/generateRoute/test.module').then(m => m.GenerateRouteModule) },
 
                 ]
             },

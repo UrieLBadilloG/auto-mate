@@ -15,6 +15,7 @@ export class AppMenuComponent implements OnInit {
         this.model = [
             { label: 'Mapas', icon: 'fa-solid fa-map-location-dot', items: [
                 { label: 'Inicial', icon: 'fa-solid fa-street-view', routerLink: ['/maps/test'] },
+                { label: 'Sec', icon: 'fa-solid fa-street-view', routerLink: ['/maps/generate'] },
             ] },
             { label: 'Dashboard', icon: 'pi pi-home', routerLink: ['/'] },
             {
