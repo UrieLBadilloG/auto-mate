@@ -4,15 +4,20 @@
         <p-calendar [(ngModel)]="time" [showIcon]="true" class="mr-2" icon="pi pi-clock" [timeOnly]="true" [showSeconds]="false"></p-calendar>
     </div>
     <div class="col-12">
-        <input pInputText type="text" placeholder="Ubicación Actual">
+        <input pInputText type="text" [(ngModel)]="currentLocation" placeholder="Ubicación Actual" style="min-width: 34vw;" disabled>
         <button pButton pRipple (click)="setCurrentLocation()" class="mr-2" icon="fa-solid fa-location-arrow" styleClass="p-button-secondary"></button>
-        <button pButton pRipple (click)="getNearestStreetAddress()" label="Generar Viaje" class="mr-2" icon="fa-solid fa-location-arrow" styleClass="p-button-secondary"></button>
+        <button pButton pRipple (click)="buscarAutos()" label="Buscar Autos Cercanos" class="mr-2" icon="fa-solid fa-car-side" styleClass="p-button-secondary"></button>
+    </div>
+    <div class="col-12">
+        <input pInputText type="text" [(ngModel)]="toLocation" placeholder="Destino" style="min-width: 34vw;">
     </div>
     <div class="col-12">
         <div *ngIf="apiLoaded | async">
             <google-map [options]="options">
                 <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"
                     [options]="markerOptions"></map-marker>
+                <map-marker *ngFor="let markerCarPosition of markerCars" [position]="markerCarPosition"
+                    [options]="markerCarsOptions" (mapClick)="handleMarkerClick(location)"></map-marker>
             </google-map>
         </div>
     </div>

@@ -28,6 +28,7 @@
     "@fullcalendar/interaction": "^6.1.5",
     "@fullcalendar/timegrid": "^6.1.5",
     "chart.js": "^3.3.2",
+    "moment": "^2.29.4",
     "primeflex": "^3.3.0",
     "primeicons": "^6.0.1",
     "primeng": "^15.2.1",
