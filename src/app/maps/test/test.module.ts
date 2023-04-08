@@ -9,24 +9,29 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { InputTextModule } from 'primeng/inputtext';
-
+import { DialogModule } from 'primeng/dialog';
+import { InputMaskModule } from 'primeng/inputmask';
+import { ListboxModule } from 'primeng/listbox';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TestRoutingModule,
-    ButtonModule,
-    RippleModule,
-    FormsModule,
-    ReactiveFormsModule,
-    GoogleMapsModule,
-    HttpClientModule,
-    HttpClientJsonpModule,
-    CalendarModule,
-    InputTextModule
-  ],
-  providers: [],
-  declarations: [TestComponent],
-  exports: [TestComponent],
+    imports: [
+        CommonModule,
+        TestRoutingModule,
+        ButtonModule,
+        RippleModule,
+        FormsModule,
+        ReactiveFormsModule,
+        GoogleMapsModule,
+        HttpClientModule,
+        HttpClientJsonpModule,
+        CalendarModule,
+        InputTextModule,
+        DialogModule,
+        InputMaskModule,
+        ListboxModule
+    ],
+    providers: [],
+    declarations: [TestComponent],
+    exports: [TestComponent],
 })
 export class TestModule { }
