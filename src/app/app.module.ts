@@ -135,6 +135,7 @@ import {PhotoService} from './demo/service/photoservice';
 import {ProductService} from './demo/service/productservice';
 import {MenuService} from './app.menu.service';
 import {ConfigService} from './demo/service/app.config.service';
+import { Shared } from 'src/shared';
 
 @NgModule({
     imports: [
@@ -268,7 +269,7 @@ import {ConfigService} from './demo/service/app.config.service';
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, AppMainComponent, ConfigService
+        PhotoService, ProductService, MenuService, AppMainComponent, ConfigService, Shared
     ],
     bootstrap: [AppComponent]
 })

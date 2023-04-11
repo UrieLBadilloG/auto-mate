@@ -1,15 +1,20 @@
 <div class="grid">
     <div class="col-12 pt-0">
         <input pInputText type="text" id="origin" [(ngModel)]="currentLocation" placeholder="Ubicación Actual" class="mr-2" style="min-width: 40vw;">
-        <button pButton pRipple (click)="setCurrentLocation()" class="mr-2" icon="fa-solid fa-location-arrow" styleClass="p-button-secondary"></button>
+        <button pButton pRipple (click)="setCurrentLocation()" class="mr-2" icon="fa-solid fa-crosshairs" styleClass="p-button-secondary"></button>
         <button pButton pRipple (click)="buscarAutos()" label="Buscar Autos Cercanos" class="mr-2" icon="fa-solid fa-car-side" styleClass="p-button-secondary"></button>
+        <label class="mr-2">Carpool</label>
+        <p-inputSwitch [(ngModel)]="carpool"></p-inputSwitch>
     </div>
     <div class="col-12">
         <input pInputText type="text" id="destination" [(ngModel)]="toLocation" placeholder="Destino" class="mr-2" style="min-width: 40vw;">
         <p-calendar [(ngModel)]="date" [showIcon]="true" class="mr-2"></p-calendar>
         <p-calendar [(ngModel)]="time" [showIcon]="true" class="mr-2" icon="pi pi-clock" [timeOnly]="true" [showSeconds]="false"></p-calendar>
         <button pButton pRipple (click)="calcularRuta()" label="Calcular Ruta" class="mr-2" icon="fa-solid fa-route" styleClass="p-button-secondary"></button>
-        <button pButton pRipple (click)="pagarViaje()" label="Método de Pago" class="mr-2" icon="fa-solid fa-money-check" styleClass="p-button-secondary"></button>
+
+        <button pButton pRipple (click)="detalles()" [label]="carpool ? 'Hacer match pasajeros' : 'Agendar Viaje'" class="mr-2" icon="fa-solid fa-location-arrow" styleClass="p-button-secondary"></button>
+
+        <!-- <button pButton pRipple (click)="pagarViaje()" label="Método de Pago" class="mr-2" icon="fa-solid fa-money-check" styleClass="p-button-secondary"></button> -->
     </div>
     <div class="col-12">
         <div *ngIf="apiLoaded | async">
@@ -69,6 +74,47 @@
             <span class="p-float-label">
                 <p-inputMask mask="999" [(ngModel)]="payment.pin"></p-inputMask>
                 <label>PIN</label>
+            </span>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+            <button pButton icon="pi pi-check" (click)="display=false" label="Ok" class="p-button-outlined"></button>
+    </ng-template>
+</p-dialog>
+
+
+
+<p-dialog header="Detalles del Viaje" [(visible)]="displayDetails" modal="modal" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+    <div class="grid p-fluid mt-3">
+        <div class="field col-12">
+            <span class="p-float-label">
+                <input type="text" pInputText [(ngModel)]="tripDetails.start_address" disabled>
+                <label>Dirección Salida</label>
+            </span>
+        </div>
+        <div class="field col-12">
+            <span class="p-float-label">
+                <input type="text" pInputText [(ngModel)]="tripDetails.end_address" disabled>
+                <label>Dirección Destino</label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-6">
+            <span class="p-float-label">
+                <input type="text" pInputText [(ngModel)]="tripDetails.duration" disabled>
+                <label>Tiempo</label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-6">
+            <span class="p-float-label">
+                <input type="text" pInputText [(ngModel)]="tripDetails.distance" disabled>
+                <label>Distancia</label>
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-6">
+            <span class="p-float-label">
+                <p-inputNumber [(ngModel)]="tripDetails.price" inputId="currency-us" mode="currency" currency="USD" locale="en-US" disabled> </p-inputNumber>
+                <label>Precio</label>
             </span>
         </div>
     </div>

@@ -12,6 +12,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { InputMaskModule } from 'primeng/inputmask';
 import { ListboxModule } from 'primeng/listbox';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
     imports: [
@@ -28,7 +30,9 @@ import { ListboxModule } from 'primeng/listbox';
         InputTextModule,
         DialogModule,
         InputMaskModule,
-        ListboxModule
+        ListboxModule,
+        InputSwitchModule,
+        InputNumberModule
     ],
     providers: [],
     declarations: [TestComponent],

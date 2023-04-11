@@ -52,6 +52,17 @@ export class TestComponent implements OnInit {
     time: any;
 
     display: boolean = false;
+    displayDetails: boolean = false;
+    carpool: boolean = false;
+
+    directionsRequest: any;
+    tripDetails: any = {
+        start_address: '',
+        end_address: '',
+        distance: '',
+        duration: '',
+        price: ''
+    }
 
     paymentMethods: any[] = [
         { label: 'Tarjeta', icon: 'fa-solid fa-money-check', type: 1 },
@@ -85,7 +96,7 @@ export class TestComponent implements OnInit {
     ngOnInit(): void {
         this.testInit = true;
         this.getCurrentLocation().then((position: any) => {
-            console.log('position', position);
+            // console.log('position', position);
             this.location = { lat: position.coords.latitude, lng: position.coords.longitude };
             /* this.options.center = { ...this.location };
             this.options.zoom = 17; */
@@ -117,14 +128,14 @@ export class TestComponent implements OnInit {
 
 
                 const inputOrigin: any = document.getElementById('origin');
-                console.log('in', inputOrigin)
+                // console.log('in', inputOrigin)
                 const searchBox1 = new google.maps.places.SearchBox(inputOrigin, {
                     bounds: defaultBounds
                 });
 
 
                 const inputDestination: any = document.getElementById('destination');
-                console.log('in', inputDestination)
+                // console.log('in', inputDestination)
                 const searchBox2 = new google.maps.places.SearchBox(inputDestination, {
                     bounds: defaultBounds
                 });
@@ -145,7 +156,7 @@ export class TestComponent implements OnInit {
 
     setCurrentLocation() {
         this.getCurrentLocation().then((position: any) => {
-            console.log('position', position);
+            // console.log('position', position);
             this.location = { lat: position.coords.latitude, lng: position.coords.longitude };
 
             this.options = {
@@ -212,10 +223,10 @@ export class TestComponent implements OnInit {
             if (status === google.maps.GeocoderStatus.OK) {
                 if (results[0]) {
                     this.currentLocation = results[0].formatted_address;
-                    console.log({
+                    /* console.log({
                         address: results[0].formatted_address,
                         location: results[0].geometry.location.toJSON(),
-                    });
+                    }); */
                 } else {
                     console.log('No se encontraron resultados.');
                 }
@@ -228,11 +239,11 @@ export class TestComponent implements OnInit {
     autoComplete() {
         try {
             const autocompleteService = new google.maps.places.AutocompleteService();
-            console.log('peticion', { input: this.toLocation })
+            // console.log('peticion', { input: this.toLocation })
 
             autocompleteService.getPlacePredictions({ input: this.toLocation }, (result, status) => {
-                console.log('resultado', result);
-                console.log('estado', status);
+                /* console.log('resultado', result);
+                console.log('estado', status); */
             })
         } catch (error) {
             console.log('error autoComplete', error)
@@ -263,7 +274,7 @@ export class TestComponent implements OnInit {
     handleMarkerClick(location: any) {
         const latLng = location.latLng;
         const loc = { lat: latLng.lat(), lng: latLng.lng() };
-        console.log('Vamos a salir de aqui', loc);
+        // console.log('Vamos a salir de aqui', loc);
         this.location = { ...loc };
         this.getStreetAddress();
     }
@@ -271,12 +282,15 @@ export class TestComponent implements OnInit {
     calcularRuta() {
         const searchTextField: any = document.getElementById('destination')
         this.toLocation = searchTextField.value;
-        console.log('calcularRuta', this.toLocation);
+        // console.log('calcularRuta', this.toLocation);
 
 
         if (this.currentLocation === '' || this.toLocation === '') {
             return;
         }
+
+        this.markerPositions = [];
+        this.markerCars = [];
 
         const request: google.maps.DirectionsRequest = {
             destination: this.currentLocation,
@@ -285,7 +299,9 @@ export class TestComponent implements OnInit {
         };
 
         this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map(response => {
-            console.log('response.result', response.result);
+
+            this.directionsRequest = response.result;
+            // console.log('response.result', response.result);
             this.showDirections = true;
             return response.result
         }));
@@ -294,6 +310,21 @@ export class TestComponent implements OnInit {
 
     pagarViaje() {
         this.display = true;
+    }
+
+    detalles() {
+        this.displayDetails = true;
+        console.log(this.directionsRequest);
+
+        const detail: any = this.directionsRequest.routes[0].legs[0];
+
+        this.tripDetails = {
+            start_address: detail.start_address,
+            end_address: detail.end_address,
+            distance: detail.distance.text,
+            duration: detail.duration.text,
+            price: (detail.distance.value * detail.duration.value) * .0000225
+        }
     }
 
 }
