@@ -1,11 +1,11 @@
 <div class="grid">
     <div class="col-12 pt-0">
-        <input pInputText type="text" [(ngModel)]="currentLocation" placeholder="Ubicación Actual" class="mr-2" style="min-width: 40vw;" disabled>
+        <input pInputText type="text" id="origin" [(ngModel)]="currentLocation" placeholder="Ubicación Actual" class="mr-2" style="min-width: 40vw;">
         <button pButton pRipple (click)="setCurrentLocation()" class="mr-2" icon="fa-solid fa-location-arrow" styleClass="p-button-secondary"></button>
         <button pButton pRipple (click)="buscarAutos()" label="Buscar Autos Cercanos" class="mr-2" icon="fa-solid fa-car-side" styleClass="p-button-secondary"></button>
     </div>
     <div class="col-12">
-        <input pInputText type="text" id="searchTextField" [(ngModel)]="toLocation" placeholder="Destino" class="mr-2" style="min-width: 40vw;">
+        <input pInputText type="text" id="destination" [(ngModel)]="toLocation" placeholder="Destino" class="mr-2" style="min-width: 40vw;">
         <p-calendar [(ngModel)]="date" [showIcon]="true" class="mr-2"></p-calendar>
         <p-calendar [(ngModel)]="time" [showIcon]="true" class="mr-2" icon="pi pi-clock" [timeOnly]="true" [showSeconds]="false"></p-calendar>
         <button pButton pRipple (click)="calcularRuta()" label="Calcular Ruta" class="mr-2" icon="fa-solid fa-route" styleClass="p-button-secondary"></button>
@@ -17,9 +17,9 @@
                 <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"
                     [options]="markerOptions"></map-marker>
                 <map-marker *ngFor="let markerCarPosition of markerCars" [position]="markerCarPosition"
-                    [options]="markerCarsOptions" (mapClick)="handleMarkerClick(location)"></map-marker>
+                    [options]="markerCarsOptions" (mapClick)="handleMarkerClick($event)"></map-marker>
                 <map-directions-renderer *ngIf="(directionsResults$ | async) as directionsResults"
-                    [directions]="directionsResults"></map-directions-renderer>
+                    [directions]="directionsResults" [options]="directionsOptions"></map-directions-renderer>
 
                 <!-- <map-directions-renderer [directions]="directionsResults"></map-directions-renderer> -->
             </google-map>

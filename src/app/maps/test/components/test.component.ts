@@ -27,6 +27,11 @@ export class TestComponent implements OnInit {
 
     showDirections: boolean = false;
     directionsResults$: Observable<google.maps.DirectionsResult | undefined>;
+    directionsOptions: google.maps.DirectionsRendererOptions = {markerOptions: {
+        draggable: false,
+        clickable: false,
+        icon: { url: './assets/map/marker.png' }
+    }}
 
     markerOptions: google.maps.MarkerOptions = { draggable: false };
     markerPositions: google.maps.LatLngLiteral[] = [];
@@ -85,7 +90,13 @@ export class TestComponent implements OnInit {
             /* this.options.center = { ...this.location };
             this.options.zoom = 17; */
 
-            this.setCurrentLocation();
+            this.options = {
+                center: { ...this.location },
+                zoom: 17,
+                streetViewControl: false,
+                mapTypeControl: false
+            };
+
             setTimeout(() => {
                 this.getStreetAddress();
                 this.ready();
@@ -104,9 +115,17 @@ export class TestComponent implements OnInit {
                 var defaultBounds = new google.maps.LatLngBounds(
                     new google.maps.LatLng(lat, lng));
 
-                const input: any = document.getElementById('searchTextField');
-                console.log('in', input)
-                const searchBox = new google.maps.places.SearchBox(input, {
+
+                const inputOrigin: any = document.getElementById('origin');
+                console.log('in', inputOrigin)
+                const searchBox1 = new google.maps.places.SearchBox(inputOrigin, {
+                    bounds: defaultBounds
+                });
+
+
+                const inputDestination: any = document.getElementById('destination');
+                console.log('in', inputDestination)
+                const searchBox2 = new google.maps.places.SearchBox(inputDestination, {
                     bounds: defaultBounds
                 });
 
@@ -125,12 +144,20 @@ export class TestComponent implements OnInit {
     }
 
     setCurrentLocation() {
-        this.options = {
-            center: { ...this.location },
-            zoom: 17,
-            streetViewControl: false,
-            mapTypeControl: false
-        }
+        this.getCurrentLocation().then((position: any) => {
+            console.log('position', position);
+            this.location = { lat: position.coords.latitude, lng: position.coords.longitude };
+
+            this.options = {
+                center: { ...this.location },
+                zoom: 16,
+                streetViewControl: false,
+                mapTypeControl: false
+            };
+
+            this.getStreetAddress();
+            this.markerPositions = [{ ...this.location }];
+        });
     }
 
     buscarAutos() {
@@ -185,10 +212,10 @@ export class TestComponent implements OnInit {
             if (status === google.maps.GeocoderStatus.OK) {
                 if (results[0]) {
                     this.currentLocation = results[0].formatted_address;
-                    /*  console.log({
-                         address: results[0].formatted_address,
-                         location: results[0].geometry.location.toJSON(),
-                     }); */
+                    console.log({
+                        address: results[0].formatted_address,
+                        location: results[0].geometry.location.toJSON(),
+                    });
                 } else {
                     console.log('No se encontraron resultados.');
                 }
@@ -234,11 +261,15 @@ export class TestComponent implements OnInit {
     }
 
     handleMarkerClick(location: any) {
-        console.log('Vamos a salir de aqui', location);
+        const latLng = location.latLng;
+        const loc = { lat: latLng.lat(), lng: latLng.lng() };
+        console.log('Vamos a salir de aqui', loc);
+        this.location = { ...loc };
+        this.getStreetAddress();
     }
 
     calcularRuta() {
-        const searchTextField: any = document.getElementById('searchTextField')
+        const searchTextField: any = document.getElementById('destination')
         this.toLocation = searchTextField.value;
         console.log('calcularRuta', this.toLocation);
 
@@ -246,29 +277,13 @@ export class TestComponent implements OnInit {
         if (this.currentLocation === '' || this.toLocation === '') {
             return;
         }
-        /* const directionsService = new google.maps.DirectionsService();
-        const results = directionsService.route({
-            origin: this.currentLocation,
-            destination: this.toLocation,
-            travelMode: google.maps.TravelMode.DRIVING,
-        }).then((results) => {
-
-            console.log('ruta encontrada', results);
-            setDirectionsResponse(results);
-            setDistance(results.routes[0].legs[0].distance.text);
-            setDuration(results.routes[0].legs[0].duration.text);
-
-            this.directionsResults = results.routes[0];
-            this.showDirections = true;
-        }) */
-
-
 
         const request: google.maps.DirectionsRequest = {
             destination: this.currentLocation,
             origin: this.toLocation,
             travelMode: google.maps.TravelMode.DRIVING
         };
+
         this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map(response => {
             console.log('response.result', response.result);
             this.showDirections = true;
