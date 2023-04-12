@@ -1,0 +1,29 @@
+.payment-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.apple-pay-button,
+.google-pay-button,
+.paypal-button {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+.apple-pay-button:hover,
+.google-pay-button:hover,
+.paypal-button:hover {
+    background-color: #f0f0f0;
+}
+
+.fa-apple,
+.fa-google,
+.fa-paypal {
+    margin-right: 5px;
+}
