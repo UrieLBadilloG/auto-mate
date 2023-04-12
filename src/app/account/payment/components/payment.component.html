@@ -1,0 +1,65 @@
+<div class="card">
+    <div class="grid">
+        <div class="col-4">
+            <i class="fa-brands fa-cc-visa"></i>
+            Visa Debit Card
+            **** **** **** 1234
+        </div>
+        <div class="col-4">
+            <i class="fa-brands fa-cc-amex"></i>
+            Amex Debit Card
+            **** **** **** 1234
+        </div>
+        <div class="col-4">
+            <i class="fa-brands fa-cc-mastercard"></i>
+            Mastercard Debit Card
+            **** **** **** 1234
+        </div>
+        <div class="col-4">
+            <i class="fa-brands fa-cc-mastercard"></i>
+            Mastercard Debit Card
+            **** **** **** 1234
+        </div>
+    </div>
+</div>
+
+
+
+<p-button (click)="newCard()" icon="pi pi-external-link" label="Agregar"></p-button>
+
+<p-dialog header="Agregar Tarjeta" [(visible)]="visible" [style]="{width: '50vw'}">
+    <div class="grid">
+        <div class="col-6">
+            <div class="grid">
+                <div class="col-12 field mt-4">
+                    <span class="p-float-label">
+                        <input type="text" pInputText class="w-12">
+                        <label>Nombre en su tarjeta</label>
+                    </span>
+                </div>
+                <div class="col-12 field">
+                    <span class="p-float-label">
+                        <input type="text" pInputText class="w-12">
+                        <label>Su número de tarjeta</label>
+                    </span>
+                </div>
+                <div class="col-6 field">
+                    <span class="p-float-label">
+                        <input type="text" pInputText class="w-12">
+                        <label>Valido Hasta</label>
+                    </span>
+                </div>
+                <div class="col-6 field">
+                    <span class="p-float-label">
+                        <input type="text" pInputText class="w-12">
+                        <label>CVV</label>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6">
+            tarjeta sjsjs
+        </div>
+    </div>
+</p-dialog>

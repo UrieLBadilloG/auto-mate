@@ -13,12 +13,15 @@ export class AppMenuComponent implements OnInit {
 
     ngOnInit() {
         this.model = [
-            { label: 'Dashboard', icon: 'pi pi-home', routerLink: ['/'] },
+            { label: 'Reservación', icon: 'fa-solid fa-car-side', routerLink: ['/'] },
+            { label: 'Simulador de Viaje', icon: 'fa-solid fa-route', routerLink: ['/driving'] },
             {
-                label: 'Mapas', icon: 'fa-solid fa-map-location-dot', items: [
-                    { label: 'Inicial', icon: 'fa-solid fa-street-view', routerLink: ['/maps/test'] },
+                label: 'Mi Cuenta', icon: 'fa-solid fa-user-gear', items: [
+                    { label: 'Viajes', icon: 'fa-regular fa-rectangle-list', routerLink: ['/trips'] },
+                    { label: 'Métodos de Pago', icon: 'fa-solid fa-money-check-dollar', routerLink: ['/payment'] },
                 ]
             },
         ];
     }
 }
+

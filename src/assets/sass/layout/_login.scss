@@ -59,6 +59,38 @@
                 }
             }
 
+            > p-password {
+                width: 85%;
+                max-width: 247px;
+                margin-bottom: 10px;
+                background-color: transparent;
+                border-radius: 6px;
+                position: relative;
+                div {
+                    width: 100%;
+                    max-width: 247px;
+                }
+                input {
+                    border-radius: 6px;
+                    border: 1.2px solid #D4D6D9;
+                    max-width: 247px;
+                    background-color: #F6F7F7;
+                    width: 100%;
+                    color: #515C66;
+                    padding: 12px 10px;
+                    &::placeholder {
+                        color: gba(41, 50, 65, 0.3);
+                    }
+                }
+                i {
+                    right: 0.5rem;
+                    position: absolute;
+                    top: 50%;
+                    margin-top: -0.5rem;
+                }
+
+            }
+
             > button {
                 width: 85%;
                 max-width: 247px;
