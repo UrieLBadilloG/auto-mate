@@ -85,7 +85,8 @@
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "freya-ng:build:production"
+                            "browserTarget": "freya-ng:build:production",
+                            "proxyConfig": "src/proxy.conf.json"
                         },
                         "development": {
                             "browserTarget": "freya-ng:build:development"
