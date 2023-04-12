@@ -19,7 +19,7 @@ class Server {
         });
         this.httpServer = new http.Server(this.app);
         this.io = new socket.Server(this.httpServer, {
-            cors: { origin: '*' }
+            cors: { origin: process.env.PRD == 1 ? 'https://auto-mate.herokuapp.com' : 'http://localhost:4200' }
         });
     }
 
@@ -27,6 +27,7 @@ class Server {
         this.app.use(cors());
         this.app.use(helmet({
             contentSecurityPolicy: false,
+            crossOriginEmbedderPolicy: false,
         }));
         // this.app.use(cookieParser());
         this.app.use(express.static(dirname + '/public'));
