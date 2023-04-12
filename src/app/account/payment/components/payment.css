@@ -27,3 +27,50 @@
 .fa-paypal {
     margin-right: 5px;
 }
+.credit-card {
+    background-color: #1e1e1e;
+    color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 300px;
+    min-height: 180px;
+    position: relative;
+    font-family: Arial, sans-serif;
+  }
+  
+  .credit-card-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .credit-card-type {
+    font-size: 20px;
+  }
+  
+  .credit-card-chip {
+    background-color: #999;
+    width: 40px;
+    height: 30px;
+    border-radius: 4px;
+  }
+  
+  .credit-card-body {
+    margin-top: 20px;
+  }
+  
+  .credit-card-number {
+    font-size: 20px;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+  
+  .credit-card-info {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .credit-card-holder,
+  .credit-card-expiration {
+    font-size: 14px;
+  }
+  
