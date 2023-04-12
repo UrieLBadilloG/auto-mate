@@ -1,0 +1,18 @@
+<div class="login-body">
+    <div class="login-wrapper">
+        <div class="login-panel">
+            <a [routerLink]="['/']" class="logo">
+                <img src="assets/img/slogan.png" alt="auto-mate" />
+            </a>
+
+            <input pInputText id="email" placeholder="Correo" />
+            <p-password [feedback]="false" [toggleMask]="true" id="password" placeholder="Contraseña"></p-password>
+            <button pButton pRipple label="LOGIN" type="button" (click)="login()" ></button>
+
+            <p>¿No tienes una cuenta?, <a href="#">regístrate</a></p>
+        </div>
+        <div class="login-footer">
+            <h6>Copyright Ⓒ auto-mate 2023</h6>
+        </div>
+    </div>
+</div>
