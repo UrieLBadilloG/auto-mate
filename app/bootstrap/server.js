@@ -19,7 +19,7 @@ class Server {
         });
         this.httpServer = new http.Server(this.app);
         this.io = new socket.Server(this.httpServer, {
-            cors: { origin: process.env.PRD == 1 ? 'https://auto-mate.herokuapp.com' : 'http://localhost:4200' }
+            cors: { origin: '*' }
         });
     }
 
