@@ -29,12 +29,14 @@ export class DrivingComponent implements OnInit {
 
   playVideo(): void {
     this.videoPlaying = true;
-    const player = this.videoPlayer.nativeElement as HTMLVideoElement;
-    player.currentTime = 222;
-    player.play();
+    setTimeout(() => {
+        const player = this.videoPlayer.nativeElement as HTMLVideoElement;
+        player.currentTime = 222;
+        player.play();
+    }, 400);
   }
   getVideoPath(): string {
     return 'assets/driving.mp4';
   }
-  
+
 }

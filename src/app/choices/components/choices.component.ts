@@ -16,6 +16,7 @@ export class ChoicesComponent implements OnInit {
   }
 
   opcion(opt: number) {
+    this.shared.option = opt;
     this.router.navigateByUrl('/reservation');
   }
 

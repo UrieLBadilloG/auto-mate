@@ -2,19 +2,21 @@
     <div class="col-12 pt-0">
         <input pInputText type="text" id="origin" [(ngModel)]="currentLocation" placeholder="Ubicación Actual" class="p-inputtext-sm mr-2" style="min-width: 40vw;">
         <button pButton pRipple (click)="setCurrentLocation()" class="mr-2 p-button-sm p-button-secondary" icon="fa-solid fa-crosshairs"></button>
-        <button pButton pRipple (click)="buscarAutos()" label="Buscar Autos Cercanos" class="p-button-sm mr-2" icon="fa-solid fa-car-side" styleClass="p-button-secondary"></button>
-        <label class="mr-2">Carpool</label>
-        <p-inputSwitch styleClass="p-inputtext-sm" [(ngModel)]="carpool"></p-inputSwitch>
+        <button pButton pRipple *ngIf="isDriver" (click)="buscarAutos()" label="Buscar Autos Cercanos" class="p-button-sm mr-2" icon="fa-solid fa-car-side" styleClass="p-button-secondary"></button>
+        <label *ngIf="isDriver" class="mr-2">Carpool</label>
+        <p-inputSwitch *ngIf="isDriver" styleClass="p-inputtext-sm" [(ngModel)]="carpool"></p-inputSwitch>
     </div>
     <div class="col-12">
         <input pInputText type="text" id="destination" [(ngModel)]="toLocation" placeholder="Destino" class="p-inputtext-sm mr-2" style="min-width: 40vw;">
-        <button pButton pRipple (click)="calcularRuta()" label="Calcular Ruta" class="p-button-sm mr-2"
+        <button pButton pRipple *ngIf="isDriver" (click)="calcularRuta()" label="Calcular Ruta" class="p-button-sm mr-2"
         icon="fa-solid fa-route" styleClass="p-button-secondary"
         [disabled]="currentLocation == '' && toLocation == ''"></button>
-        <button pButton pRipple (click)="detalles()"
+        <button pButton pRipple *ngIf="isDriver" (click)="detalles()"
         [label]="carpool ? 'Hacer match pasajeros' : 'Agendar Viaje'" class="p-button-sm mr-2"
         icon="fa-solid fa-location-arrow" styleClass="p-button-secondary"
         [disabled]="!showDirections"></button>
+
+        <button pButton pRipple *ngIf="!isDriver" (click)="buscarConductores()" label="Buscar Conductores" icon="fa-solid fa-car-on"></button>
 
         <!-- <button pButton pRipple (click)="pagarViaje()" label="Método de Pago" class="mr-2" icon="fa-solid fa-money-check" styleClass="p-button-secondary"></button> -->
     </div>

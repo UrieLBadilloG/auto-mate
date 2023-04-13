@@ -13,13 +13,13 @@
     <div class="door-circle"></div>
     <div class="door-text">{{ doorOpen ? doorOpenText.close : doorOpenText.open }}</div>
 </div>
-<button (click)="playVideo()">Go</button>
+<button pButton pRipple (click)="playVideo()" class="p-button-sm">Go</button>
 
 <br/>
 <br/>
 <!-- Aquí insertamos el elemento de video con el ID "video-player" -->
 <div *ngIf="videoPlaying">
-  <video id="video-player" width="480" height="320" [src]="getVideoPath()" #videoPlayer></video>
+  <video controls autoplay controlsList="nodownload" id="video-player" width="480" height="320" [src]="getVideoPath()" #videoPlayer></video>
 </div>
 
 <br/>

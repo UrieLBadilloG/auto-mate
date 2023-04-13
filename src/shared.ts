@@ -5,6 +5,8 @@ export class Shared {
 
     login: boolean = false;
 
+    option: number = 1;
+
     tripDetails: any = {
         start_address: '',
         end_address: '',

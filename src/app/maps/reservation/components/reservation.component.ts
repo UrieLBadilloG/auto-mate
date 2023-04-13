@@ -84,6 +84,8 @@ export class ReservationComponent implements OnInit {
         type: 1
     };
 
+    isDriver: boolean = true;
+
     constructor(httpClient: HttpClient, private mapDirectionsService: MapDirectionsService, private router: Router, private shared: Shared) {
         this.apiLoaded = httpClient.jsonp(`https://maps.googleapis.com/maps/api/js?libraries=places&key=${this.apiKey}`, 'callback')
             .pipe(
@@ -98,6 +100,9 @@ export class ReservationComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
+        this.isDriver = this.shared.option == 1;
+
         this.testInit = true;
         this.getCurrentLocation().then((position: any) => {
             // console.log('position', position);
@@ -333,6 +338,24 @@ export class ReservationComponent implements OnInit {
         } else {
             this.displayDetails = true;
         }
+    }
+
+    buscarConductores() {
+
+        const searchTextField: any = document.getElementById('destination')
+        this.toLocation = searchTextField.value;
+
+        this.tripDetails = {
+            start_address: this.toLocation,
+            end_address: this.currentLocation,
+            distance: '0 kms',
+            duration: '0 min',
+            price: 0
+        }
+
+        this.shared.tripDetails = { ...this.tripDetails };
+
+        this.router.navigateByUrl('/match');
     }
 
 }
