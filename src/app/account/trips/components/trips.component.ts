@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 
 @Component({
-  selector: 'app-blank',
-  templateUrl: './blank.component.html',
-  styleUrls: ['./blank.component.css']
+  selector: 'app-trips',
+  templateUrl: './trips.component.html',
+  styleUrls: ['./trips.component.css']
 })
-export class BlankComponent implements OnInit {
+export class TripsComponent implements OnInit {
   cards: any[] = [];
   visible: boolean = false;
   exampleDirections = [

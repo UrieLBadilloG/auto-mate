@@ -16,8 +16,10 @@ import { ValidarSesion } from 'src/core/guards/validar-sesion';
                 children: [
                     { path: '', loadChildren: () => import('./maps/reservation/reservation.module').then(m => m.ReservationModule) },
                     { path: 'payment', loadChildren: () => import('./account/payment/payment.module').then(m => m.PaymentModule) },
-                    { path: 'driving', loadChildren: () => import('./blank/blank.module').then(m => m.BlankModule) },
-                    { path: 'trips', loadChildren: () => import('./blank/blank.module').then(m => m.BlankModule) },
+                    { path: 'trips', loadChildren: () => import('./account/trips/trips.module').then(m => m.TripsModule) },
+
+                    { path: 'driving', loadChildren: () => import('./maps/driving/driving.module').then(m => m.DrivingModule) },
+
 
                 ]
             },
