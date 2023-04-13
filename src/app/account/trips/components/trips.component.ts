@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trips',
@@ -21,7 +22,7 @@ export class TripsComponent implements OnInit {
     // Agrega más indicaciones aquí
   ];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.generateCards();
@@ -53,6 +54,6 @@ export class TripsComponent implements OnInit {
 
   startTrip(): void {
     console.log('Iniciando viaje...');
-    // Aquí puedes agregar la funcionalidad para iniciar el viaje
+    this.router.navigateByUrl('/driving');
   }
 }
