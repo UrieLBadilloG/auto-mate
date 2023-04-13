@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { InputTextModule } from 'primeng/inputtext';
-
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   imports: [
@@ -16,10 +16,12 @@ import { InputTextModule } from 'primeng/inputtext';
     RippleModule,
     FormsModule,
     ReactiveFormsModule,
-    InputTextModule
+    InputTextModule, 
+    DialogModule
   ],
   providers: [],
   declarations: [BlankComponent],
   exports: [BlankComponent],
+  bootstrap: [BlankComponent]
 })
 export class BlankModule { }

@@ -1,1 +1,35 @@
-<h5>En construcción</h5>
+<div class="container" id="viajes-container">
+    <div class="row">
+        <div class="col-md-3" *ngFor="let card of cards">
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ card.date }}</h5>
+                    <p class="card-text">
+                        Ubicación de inicio: {{ card.startLocation }}<br>
+                        Destino: {{ card.destination }}<br>
+                        Costo: {{ card.cost }}
+                    </p>
+                    <button class="btn btn-primary float-end mx-1" (click)="navigateToCar()">Llegar al auto</button>
+                    <br />
+                    <button class="btn btn-success float-end" (click)="startTrip()">Iniciar viaje</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-button (click)="openDirectionsModal()" icon="pi pi-external-link" label="Llegar al auto"></p-button>
+
+<p-dialog header="Indicaciones para llegar al auto" [(visible)]="visible" [style]="{width: '50vw'}">
+    <div class="grid">
+        <div class="col-6">
+            <div class="step" *ngFor="let step of exampleDirections">
+                <p class="instruction">{{ step.instruction }}</p>
+                <p class="distance">{{ step.distance }}</p>
+            </div>
+        </div>
+        <div class="col-6">
+            <img src="https://via.placeholder.com/300x400" alt="Mapa estático" />
+        </div>
+    </div>
+</p-dialog>
