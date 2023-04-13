@@ -91,12 +91,10 @@
         <div class="field col-12">
             <p-calendar [(ngModel)]="date" [showIcon]="true" class="p-inputtext-sm mr-2"></p-calendar>
             <p-calendar [(ngModel)]="time" [showIcon]="true" class="p-inputtext-sm mr-2" icon="pi pi-clock" [timeOnly]="true" [showSeconds]="false"></p-calendar>
-            <label class="mr-2">Carpool</label>
-            <p-inputSwitch styleClass="p-inputtext-sm" [(ngModel)]="carpool"></p-inputSwitch>
         </div>
     </div>
     <div class="grid">
-        <div [class]="carpool ? 'col-6' : 'col-12'">
+        <div class="col-12">
             <div class="grid p-fluid mt-3">
                 <div class="field col-12">
                     <span class="p-float-label">
@@ -131,32 +129,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="carpool" class="col-6" style="display: grid;
-        justify-content: space-around;
-        align-items: center;
-        justify-items: center;
-        align-content: center;">
-            <div class="grid">
-                <div class="col-4 card m-2">
-                    <div class="card-body">
-                        <h5 class="card-title">Usuario 1</h5>
-                        <p class="card-text">Descripción</p>
-                    </div>
-                </div>
-                <div class="col-4 card m-2">
-                    <div class="card-body">
-                        <h5 class="card-title">Usuario 2</h5>
-                        <p class="card-text">Descripción</p>
-                    </div>
-                </div>
-                <div class="col-4 card m-2">
-                    <div class="card-body">
-                        <h5 class="card-title">Usuario 3</h5>
-                        <p class="card-text">Descripción</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 
     <ng-template pTemplate="footer">

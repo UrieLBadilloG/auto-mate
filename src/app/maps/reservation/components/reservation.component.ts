@@ -6,6 +6,8 @@ import { catchError, map } from 'rxjs/operators';
 import * as moment from 'moment';
 
 import { MapDirectionsService } from '@angular/google-maps';
+import { Router } from '@angular/router';
+import { Shared } from 'src/shared';
 
 @Component({
     selector: 'app-reservation',
@@ -27,11 +29,13 @@ export class ReservationComponent implements OnInit {
 
     showDirections: boolean = false;
     directionsResults$: Observable<google.maps.DirectionsResult | undefined>;
-    directionsOptions: google.maps.DirectionsRendererOptions = {markerOptions: {
-        draggable: false,
-        clickable: false,
-        icon: { url: './assets/map/marker.png' }
-    }}
+    directionsOptions: google.maps.DirectionsRendererOptions = {
+        markerOptions: {
+            draggable: false,
+            clickable: false,
+            icon: { url: './assets/map/marker.png' }
+        }
+    }
 
     markerOptions: google.maps.MarkerOptions = { draggable: false };
     markerPositions: google.maps.LatLngLiteral[] = [];
@@ -62,7 +66,7 @@ export class ReservationComponent implements OnInit {
         distance: '',
         duration: '',
         price: ''
-    }
+    };
 
     paymentMethods: any[] = [
         { label: 'Tarjeta', icon: 'fa-solid fa-money-check', type: 1 },
@@ -80,7 +84,7 @@ export class ReservationComponent implements OnInit {
         type: 1
     };
 
-    constructor(httpClient: HttpClient, private mapDirectionsService: MapDirectionsService) {
+    constructor(httpClient: HttpClient, private mapDirectionsService: MapDirectionsService, private router: Router, private shared: Shared) {
         this.apiLoaded = httpClient.jsonp(`https://maps.googleapis.com/maps/api/js?libraries=places&key=${this.apiKey}`, 'callback')
             .pipe(
                 map(() => {
@@ -313,9 +317,6 @@ export class ReservationComponent implements OnInit {
     }
 
     detalles() {
-        this.displayDetails = true;
-        console.log(this.directionsRequest);
-
         const detail: any = this.directionsRequest.routes[0].legs[0];
 
         this.tripDetails = {
@@ -324,6 +325,13 @@ export class ReservationComponent implements OnInit {
             distance: detail.distance.text,
             duration: detail.duration.text,
             price: (detail.distance.value * detail.duration.value) * .0000225
+        }
+
+        if (this.carpool) {
+            this.shared.tripDetails = { ...this.tripDetails };
+            this.router.navigateByUrl('/match');
+        } else {
+            this.displayDetails = true;
         }
     }
 

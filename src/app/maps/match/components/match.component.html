@@ -1,0 +1,59 @@
+<div class="grid">
+    <div class="col-4">
+        <div class="grid">
+            <div class="col-12">
+                <div class="grid p-fluid mt-3">
+                    <div class="field col-12">
+                        <span class="p-float-label">
+                            <input type="text" pInputText [(ngModel)]="tripDetails.end_address" disabled>
+                            <label>Dirección Salida</label>
+                        </span>
+                    </div>
+                    <div class="field col-12">
+                        <span class="p-float-label">
+                            <input type="text" pInputText [(ngModel)]="tripDetails.start_address" disabled>
+                            <label>Dirección Destino</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
+                            <input type="text" pInputText [(ngModel)]="tripDetails.duration" disabled>
+                            <label>Tiempo</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
+                            <input type="text" pInputText [(ngModel)]="tripDetails.distance" disabled>
+                            <label>Distancia</label>
+                        </span>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
+                            <p-inputNumber [(ngModel)]="tripDetails.price" inputId="currency-us" mode="currency" currency="USD" locale="en-US" disabled> </p-inputNumber>
+                            <label>Precio</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" style="text-align: center;">
+                <button pButton pRipple label="Iniciar Viaje" icon="fa-solid fa-location-arrow" class="p-button-sm"></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="grid" style="display: flex; justify-content: space-around; align-items: center; align-content: center;">
+            <div *ngFor="let item of users" class="col-4 card overview-box white m-2" (click)="selectUser(item)"
+            [ngClass]="{'selected-user': item.selected}" style="justify-content: space-between; align-items: center; cursor: pointer;">
+
+                <p-avatar [image]="item.image"
+                styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
+                <h4 class="m-0 mb-1 text-500" style="text-transform: capitalize;">{{item.name}}</h4>
+                <h5 class="m-0 text-500 stars">
+                    <i *ngFor="let star of returnStars(item.stars)" [class]="star.class"></i>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+
