@@ -1,15 +1,10 @@
-.switch-button {
-  width: 60px;
-  height: 30px;
-  background-color: #dcdcdc;
-  border-radius: 30px;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+Copy code
+.switch-button, .door-button {
+  float: left;
+  width: 200px;
+  margin-right: 20px;
 }
+
 
 .switch-button.active {
   background-color: #00cc00;
@@ -88,4 +83,29 @@
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+
+video#video-player {
+  float: right;
+  width: calc(50% - 20px);
+  height: 0;
+  padding-bottom: 56.25%;
+  object-fit: fill;
+}
+
+@media (max-width: 767px) {
+  .switch-button, .door-button {
+    width: 100%;
+    float: none;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  video#video-player {
+    width: 100%;
+    float: none;
+    height: auto;
+    padding-bottom: 0;
+  }
 }

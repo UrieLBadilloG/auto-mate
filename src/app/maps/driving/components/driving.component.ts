@@ -11,6 +11,7 @@ export class DrivingComponent implements OnInit {
 
   engineOn: boolean = false;
   doorOpen: boolean = false;
+  videoPlaying: boolean = false;
 
   @ViewChild('videoPlayer', { static: false }) videoPlayer: ElementRef;
 
@@ -27,8 +28,13 @@ export class DrivingComponent implements OnInit {
   }
 
   playVideo(): void {
+    this.videoPlaying = true;
     const player = this.videoPlayer.nativeElement as HTMLVideoElement;
     player.currentTime = 222;
     player.play();
   }
+  getVideoPath(): string {
+    return 'assets/driving.mp4';
+  }
+  
 }

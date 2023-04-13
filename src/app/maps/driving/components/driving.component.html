@@ -1,26 +1,26 @@
 <!-- Botón de encendido -->
-<!-- Botón de encendido -->
 <div> Estado del auto auto</div>
 <div class="switch-button" [class.active]="engineOn" (click)="toggleEngine()">
     <div class="switch-circle"></div>
     <div class="switch-text">{{ engineOn ? engineOnText.on : engineOnText.off }}</div>
-  </div>
+</div>
 
-  <br/>
-  <!-- Botón de abrir puerta -->
-  <div> abrir auto</div>
-  <div class="door-button" [class.active]="doorOpen" (click)="toggleDoor()">
+<br/>
+<!-- Botón de abrir puerta -->
+<div> abrir auto</div>
+<div class="door-button" [class.active]="doorOpen" (click)="toggleDoor()">
     <div class="door-line"></div>
     <div class="door-circle"></div>
     <div class="door-text">{{ doorOpen ? doorOpenText.close : doorOpenText.open }}</div>
-  </div>
+</div>
+<button (click)="playVideo()">Go</button>
 
-  <br/>
-  <br/>
-  <!-- Aquí insertamos el elemento de video con el ID "video-player" -->
-  <video id="video-player" width="480" height="320" src="driving.mp4" #videoPlayer></video>
+<br/>
+<br/>
+<!-- Aquí insertamos el elemento de video con el ID "video-player" -->
+<div *ngIf="videoPlaying">
+  <video id="video-player" width="480" height="320" [src]="getVideoPath()" #videoPlayer></video>
+</div>
 
-  <br/>
-
-  <button (click)="playVideo()">Go</button>
+<br/>
 
